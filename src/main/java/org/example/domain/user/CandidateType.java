@@ -1,11 +1,11 @@
-package org.example.location;
+package org.example.domain.user;
 
-public class LocationType {
+public class CandidateType {
     private String id;
     private String name;
     private String description;
 
-    public LocationType(Builder builder) {
+    public CandidateType(Builder builder) {
         this.description = builder.description;
         this.id = builder.id;
         this.name = builder.name;
@@ -38,8 +38,8 @@ public class LocationType {
             this.description = description;
             return this;
         }
-        public LocationType build(){
-            return new LocationType(this);
+        public CandidateType build(){
+            return new CandidateType(this);
         }
     }
 }

@@ -1,22 +1,22 @@
-package org.example.location;
+package org.example.domain.location;
 
-public class CandidateLocation {
+public class VoterLocation {
     private String id;
-    private String candidateId;
+    private String voterId;
     private String locationId;
 
-    public CandidateLocation(Builder builder) {
-        this.candidateId = builder.candidateId;
+    public VoterLocation(Builder builder) {
         this.id = builder.id;
         this.locationId = builder.locationId;
+        this.voterId = builder.voterId;
     }
 
     public String getId() {
         return id;
     }
 
-    public String getCandidateId() {
-        return candidateId;
+    public String getVoterId() {
+        return voterId;
     }
 
     public String getLocationId() {
@@ -24,22 +24,22 @@ public class CandidateLocation {
     }
     public static class Builder{
         private String id;
-        private String candidateId;
+        private String voterId;
         private String locationId;
 
         public Builder(String id){
             this.id = id;
         }
-        public Builder buildCandidateId(String candidateId){
-            this.candidateId = candidateId;
+        public Builder buildVoterId(String voterId){
+            this.voterId = voterId;
             return this;
         }
         public Builder buildLocationId(String locationId){
             this.locationId = locationId;
             return this;
         }
-        public CandidateLocation build(){
-            return new CandidateLocation(this);
+        public VoterLocation build(){
+            return new VoterLocation(this);
         }
     }
 }

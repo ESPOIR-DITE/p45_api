@@ -1,13 +1,13 @@
-package org.example.user;
+package org.example.domain.location;
 
-public class Party {
+public class LocationType {
     private String id;
     private String name;
     private String description;
 
-    public Party(Builder builder) {
-        this.id = builder.id;
+    public LocationType(Builder builder) {
         this.description = builder.description;
+        this.id = builder.id;
         this.name = builder.name;
     }
 
@@ -38,8 +38,8 @@ public class Party {
             this.description = description;
             return this;
         }
-        public Party build(){
-            return new Party(this);
+        public LocationType build(){
+            return new LocationType(this);
         }
     }
 }

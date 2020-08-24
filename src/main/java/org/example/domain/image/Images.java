@@ -1,4 +1,4 @@
-package org.example.image;
+package org.example.domain.image;
 
 public class Images {
     private String id;

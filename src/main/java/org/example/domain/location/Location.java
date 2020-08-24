@@ -1,4 +1,4 @@
-package org.example.location;
+package org.example.domain.location;
 
 public class Location {
     private String id;

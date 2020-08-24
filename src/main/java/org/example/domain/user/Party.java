@@ -1,13 +1,13 @@
-package org.example.location;
+package org.example.domain.user;
 
-public class CandidateType {
+public class Party {
     private String id;
     private String name;
     private String description;
 
-    public CandidateType(Builder builder) {
-        this.description = builder.description;
+    public Party(Builder builder) {
         this.id = builder.id;
+        this.description = builder.description;
         this.name = builder.name;
     }
 
@@ -38,8 +38,8 @@ public class CandidateType {
             this.description = description;
             return this;
         }
-        public CandidateType build(){
-            return new CandidateType(this);
+        public Party build(){
+            return new Party(this);
         }
     }
 }

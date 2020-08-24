@@ -1,4 +1,4 @@
-package org.example.vote;
+package org.example.domain.vote;
 
 import java.util.Date;
 

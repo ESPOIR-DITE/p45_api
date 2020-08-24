@@ -1,15 +1,17 @@
-package org.example.user;
+package org.example.domain.vote;
 
-public class Candidate {
+public class Voter {
     private String id;
     private String name;
     private String surname;
-    private String partyId;
+    private String phoneNumber;
+    private byte[] fingerPrint;
 
-    public Candidate(Builder builder) {
+    public Voter(Builder builder) {
+        this.fingerPrint = builder.fingerPrint;
         this.id = builder.id;
         this.name = builder.name;
-        this.partyId = builder.partyId;
+        this.phoneNumber = builder.phoneNumber;
         this.surname = builder.surname;
     }
 
@@ -25,14 +27,19 @@ public class Candidate {
         return surname;
     }
 
-    public String getPartyId() {
-        return partyId;
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public byte[] getFingerPrint() {
+        return fingerPrint;
     }
     public static class Builder{
         private String id;
         private String name;
         private String surname;
-        private String partyId;
+        private String phoneNumber;
+        private byte[] fingerPrint;
 
         public Builder(String id){
             this.id = id;
@@ -45,13 +52,16 @@ public class Candidate {
             this.surname = surname;
             return this;
         }
-        public Builder buildPartyId(String partyId){
-            this.partyId = partyId;
+        public Builder buildPhoneNumber(String phoneNumber){
+            this.phoneNumber = phoneNumber;
             return this;
         }
-        public Candidate build(){
-            return  new Candidate(this);
+        public Builder buildFingerPrint(byte[] fingerPrint){
+            this.fingerPrint = fingerPrint;
+            return this;
+        }
+        public Voter build(){
+            return new Voter(this);
         }
     }
-
 }

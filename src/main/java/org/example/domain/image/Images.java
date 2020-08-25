@@ -1,6 +1,11 @@
 package org.example.domain.image;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Images {
+    @Id
     private String id;
     private byte[] images;
 

@@ -1,14 +1,28 @@
 package org.example.domain.user;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Party {
+    @Id
     private String id;
     private String name;
     private String description;
+    private byte[] flag;
+
+    private Party() {
+    }
 
     public Party(Builder builder) {
         this.id = builder.id;
         this.description = builder.description;
         this.name = builder.name;
+        this.flag = builder.flag;
+    }
+
+    public byte[] getFlag() {
+        return flag;
     }
 
     public String getId() {
@@ -26,6 +40,8 @@ public class Party {
         private String id;
         private String name;
         private String description;
+        private byte[] flag;
+
 
         public Builder(String id){
             this.id = id;
@@ -36,6 +52,10 @@ public class Party {
         }
         public Builder buildDescription(String description){
             this.description = description;
+            return this;
+        }
+        public Builder buildFlag(byte[] flag){
+            this.flag = flag;
             return this;
         }
         public Party build(){

@@ -1,9 +1,17 @@
 package org.example.domain.user;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class CandidateType {
+    @Id
     private String id;
     private String name;
     private String description;
+
+    private CandidateType() {
+    }
 
     public CandidateType(Builder builder) {
         this.description = builder.description;

@@ -2,6 +2,7 @@ package org.example.controller.location;
 
 import org.example.controller.Icontroller;
 import org.example.domain.location.VoterLocation;
+import org.example.factory.location.VoterLocationFactory;
 import org.example.service.location.VoterLocationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +18,8 @@ public class VoterLocationController implements Icontroller<VoterLocation,String
     @PostMapping("create")
     @Override
     public VoterLocation create(@RequestBody VoterLocation voterLocation) {
-        return voterLocationService.create(voterLocation);
+        VoterLocation voterLocation1 = VoterLocationFactory.getVoterLocation(voterLocation.getVoterId(),voterLocation.getLocationId());
+        return voterLocationService.create(voterLocation1);
     }
 
     @PostMapping("update")

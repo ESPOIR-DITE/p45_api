@@ -1,9 +1,17 @@
 package org.example.domain.location;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class LocationType {
+    @Id
     private String id;
     private String name;
     private String description;
+
+    private LocationType() {
+    }
 
     public LocationType(Builder builder) {
         this.description = builder.description;

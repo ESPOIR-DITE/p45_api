@@ -6,10 +6,11 @@ import org.example.repository.vote.VoteRepository;
 import org.example.repository.vote.VoterRepository;
 import org.example.service.Iservice;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-
+@Service
 public class VoterService implements Iservice<Voter,String> {
     @Autowired
     private VoterRepository voterRepository;

@@ -1,9 +1,17 @@
 package org.example.domain.image;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class PartyImage {
+    @Id
     private String id;
     private String partyId;
     private String imageId;
+
+    private PartyImage() {
+    }
 
     public PartyImage(Builder builder) {
         this.id = builder.id;

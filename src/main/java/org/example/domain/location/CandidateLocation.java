@@ -1,9 +1,17 @@
 package org.example.domain.location;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class CandidateLocation {
+    @Id
     private String id;
     private String candidateId;
     private String locationId;
+
+    public CandidateLocation() {
+    }
 
     public CandidateLocation(Builder builder) {
         this.candidateId = builder.candidateId;

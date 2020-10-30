@@ -9,6 +9,9 @@ public class Images {
     private String id;
     private byte[] images;
 
+    private Images() {
+    }
+
     public Images(Builder builder) {
         this.id = builder.id;
         this.images = builder.images;

@@ -2,6 +2,7 @@ package org.example.controller.user;
 
 import org.example.controller.Icontroller;
 import org.example.domain.user.Candidate;
+import org.example.factory.candidate.CandidateFactory;
 import org.example.service.user.CandidateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -9,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("p45_api/candidate")
+@RequestMapping("p45_api/candidate/")
 public class CandidateController implements Icontroller<Candidate,String> {
     @Autowired
     private CandidateService candidateService;
@@ -17,7 +18,8 @@ public class CandidateController implements Icontroller<Candidate,String> {
     @PostMapping("create")
     @Override
     public Candidate create(@RequestBody Candidate candidate) {
-        return candidateService.create(candidate);
+        Candidate candidate1 = CandidateFactory.getCandidate(candidate.getName(),candidate.getSurname(),candidate.getPartyId());
+        return candidateService.create(candidate1);
     }
 
     @PostMapping("update")

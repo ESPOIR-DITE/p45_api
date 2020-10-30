@@ -1,10 +1,18 @@
 package org.example.domain.user;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Candidate {
+    @Id
     private String id;
     private String name;
     private String surname;
     private String partyId;
+
+    private Candidate() {
+    }
 
     public Candidate(Builder builder) {
         this.id = builder.id;

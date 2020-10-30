@@ -2,6 +2,7 @@ package org.example.controller.location;
 
 import org.example.controller.Icontroller;
 import org.example.domain.location.CandidateLocation;
+import org.example.factory.location.CandidateLocationFactory;
 import org.example.service.location.CandidateLocationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -9,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("p45_api/location_candidate")
+@RequestMapping("p45_api/location_candidate/")
 public class CandidateLocationController implements Icontroller<CandidateLocation,String> {
     @Autowired
     private CandidateLocationService candidateLocationService;
@@ -17,7 +18,8 @@ public class CandidateLocationController implements Icontroller<CandidateLocatio
     @PostMapping("create")
     @Override
     public CandidateLocation create(@RequestBody CandidateLocation candidateLocation) {
-        return candidateLocationService.create(candidateLocation);
+        CandidateLocation candidateLocation1 = CandidateLocationFactory.getCandidateLocation(candidateLocation.getCandidateId(),candidateLocation.getLocationId());
+        return candidateLocationService.create(candidateLocation1);
     }
 
     @PostMapping("update")

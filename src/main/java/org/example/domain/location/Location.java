@@ -1,13 +1,18 @@
 package org.example.domain.location;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Location {
+    @Id
     private String id;
     private String location;
     private String address;
     private String description;
     private String parentLocationId;
 
-    public Location() {
+    private Location() {
     }
 
     public Location(Builder builder) {

@@ -2,6 +2,7 @@ package org.example.controller.vote;
 
 import org.example.controller.Icontroller;
 import org.example.domain.vote.Voter;
+import org.example.factory.vote.VoterFactory;
 import org.example.service.vote.VoterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -9,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("p45_api/voter")
+@RequestMapping("p45_api/voter/")
 public class VoterController implements Icontroller<Voter,String> {
     @Autowired
     private VoterService voterService;
@@ -17,7 +18,8 @@ public class VoterController implements Icontroller<Voter,String> {
     @PostMapping("create")
     @Override
     public Voter create(@RequestBody Voter voter) {
-        return voterService.create(voter);
+        Voter voter1 = VoterFactory.getVoter(voter.getName(),voter.getSurname(),voter.getPhoneNumber()/**,voter.getFingerPrint()**/,voter.getImage());
+        return voterService.create(voter1);
     }
 
     @PostMapping("update")

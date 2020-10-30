@@ -1,12 +1,18 @@
 package org.example.domain.vote;
 
-import java.util.Date;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
+@Entity
 public class Vote {
+    @Id
     private String id;
     private String candidateId;
-    private Date date;
+    private String date;
     private String locationId;
+
+    private Vote() {
+    }
 
     public Vote(Builder builder) {
         this.candidateId = builder.candidateId;
@@ -23,7 +29,7 @@ public class Vote {
         return candidateId;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
@@ -33,7 +39,7 @@ public class Vote {
     public static class Builder{
         private String id;
         private String candidateId;
-        private Date date;
+        private String date;
         private String locationId;
 
         public Builder(String id){
@@ -43,7 +49,7 @@ public class Vote {
             this.candidateId = candidateId;
             return this;
         }
-        public Builder Date(Date date){
+        public Builder Date(String date){
             this.date = date;
             return this;
         }

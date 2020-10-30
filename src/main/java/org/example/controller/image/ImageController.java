@@ -2,6 +2,7 @@ package org.example.controller.image;
 
 import org.example.controller.Icontroller;
 import org.example.domain.image.Images;
+import org.example.factory.image.ImageFactory;
 import org.example.service.image.ImageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +17,8 @@ public class ImageController implements Icontroller<Images,String> {
     @PostMapping("create")
     @Override
     public Images create(@RequestBody Images images) {
-        return imageService.create(images);
+        Images images1 = ImageFactory.getImage(images.getImages());
+        return imageService.create(images1);
     }
 
     @PostMapping("update")

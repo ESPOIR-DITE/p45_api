@@ -35,7 +35,7 @@ public class VoterController implements Icontroller<Voter,String> {
 //        pictureWriter(voter.getImage());
 //        ImageResizer.getResizedImage();
 //        byte[] resised = convertToBytes();
-        Voter voter1 = VoterFactory.getVoter(voter.getId(),voter.getName(),voter.getSurname(),voter.getPhoneNumber()/**,voter.getFingerPrint()**/,encodeIntoByteArray(voter.getImage()),voter.isCanVote());
+        Voter voter1 = VoterFactory.getVoter(voter.getId(),voter.getName(),voter.getSurname(),voter.getPhoneNumber()/**,voter.getFingerPrint()**/,encodeIntoByteArray(voter.getImage()),true);
         return voterService.create(voter1);
     }
 
@@ -48,7 +48,15 @@ public class VoterController implements Icontroller<Voter,String> {
     @GetMapping("read")
     @Override
     public Voter read(@RequestParam("id") String id) {
-        return voterService.read(id);
+        Voter voter = voterService.read(id);
+        try{
+            if(voter.isCanVote()) return voter;
+            else return null;
+        }catch (NullPointerException n){
+            return voter;
+        }
+
+        //return voterService.read(id);
     }
 
     @GetMapping("delete")

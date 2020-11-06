@@ -1,11 +1,9 @@
 package org.example.controller.user;
 
-import org.apache.commons.io.FileUtils;
 import org.example.controller.Icontroller;
 import org.example.domain.user.Party;
 import org.example.factory.candidate.PartyFactory;
 import org.example.service.user.PartyService;
-import org.example.util.ImageResizer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,25 +27,36 @@ public class PartyController implements Icontroller<Party,String> {
     private PartyService partyService;
 
     @Override
-    public Party create(Party party){
-        return null;
-    }
+//    public Party create(Party party){
+//        return null;
+//    }
 
     @PostMapping("create")
-    public Party create(@RequestBody PartyHelper party) throws IOException {
-        System.out.println(party.getFlag());
-        pictureWriter(party.getFlag());
-        ImageResizer.getResizedImage();
-        byte[] resised = convertToBytes();
+    public Party create(@RequestBody Party party) throws IOException {
+//        System.out.println(party.getFlag());
+//        pictureWriter(party.getFlag());
+//        ImageResizer.getResizedImage();
+//        byte[] resised = convertToBytes();
 
-        Party party1 = PartyFactory.getParty(party.getName(),party.getDescription(),encodeIntoByteArray(resised));
+        Party party1 = PartyFactory.getParty(party.getName(),party.getAbbreviation(),encodeIntoByteArray(party.getFlag()));
         return partyService.create(party1);
     }
 
     @PostMapping("update")
     @Override
     public Party update(@RequestBody Party party) {
-        return partyService.update(party);
+        Party party1 = PartyFactory.getPartyUpdate(party.getId(),party.getName(),party.getAbbreviation(),encodeIntoByteArray(party.getFlag()));
+        return partyService.update(party1);
+    }
+
+    @GetMapping("readWith")
+    public Party readWithAbbreviation(@RequestParam("abv") String abv) {
+        return partyService.readWithAbv(abv);
+    }
+
+    @GetMapping("deleteWith")
+    public Boolean deleteWithAbbreviation(@RequestParam("abv") String abv) {
+        return partyService.deleteWithAbv(abv);
     }
 
     @GetMapping("read")
@@ -75,8 +84,12 @@ public class PartyController implements Icontroller<Party,String> {
     }
 
 
-    public void pictureWriter(File file) throws IOException {
-        byte[] bytes = FileUtils.readFileToByteArray(file);
+    public void pictureWriter(byte[] bytes) throws IOException {
+//        byte[] bytes = FileUtils.readFileToByteArray(file);
+//        ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
+//        BufferedImage bImage2 = ImageIO.read(bis);
+//        ImageIO.write(bImage2, "jpg", file_save_path);
+//        System.out.println("image created");
         ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
         BufferedImage bImage2 = ImageIO.read(bis);
         ImageIO.write(bImage2, "jpg", file_save_path);

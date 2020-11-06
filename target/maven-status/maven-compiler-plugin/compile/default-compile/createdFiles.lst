@@ -1,5 +1,6 @@
 org\example\factory\image\VoterImageFactory.class
 org\example\controller\location\LocationTypeController.class
+org\example\domain\vote\VoteHelper.class
 org\example\repository\cadidate\CandidateTypeRep.class
 org\example\repository\image\PartyImageRepository.class
 org\example\repository\vote\VoterRepository.class
@@ -63,6 +64,7 @@ org\example\factory\vote\VoterFactory.class
 org\example\factory\vote\VoteFactory.class
 org\example\repository\image\ImagesRepository.class
 org\example\service\image\ImageService.class
+org\example\util\ImageResizer.class
 org\example\factory\image\ImageFactory.class
 org\example\domain\location\LocationType$Builder.class
 org\example\domain\image\imageTest.class
@@ -74,6 +76,7 @@ org\example\domain\vote\Vote.class
 org\example\service\location\LocationService.class
 org\example\service\vote\VoterService.class
 org\example\domain\vote\Voter.class
+org\example\controller\user\PartyHelper.class
 org\example\repository\cadidate\CandidateRepo.class
 org\example\util\DateFormating.class
 org\example\factory\candidate\CandidateFactory.class

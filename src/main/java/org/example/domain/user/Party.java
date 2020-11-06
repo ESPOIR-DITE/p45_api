@@ -8,7 +8,7 @@ public class Party {
     @Id
     private String id;
     private String name;
-    private String description;
+    private String abbreviation;
     private byte[] flag;
 
     private Party() {
@@ -16,7 +16,7 @@ public class Party {
 
     public Party(Builder builder) {
         this.id = builder.id;
-        this.description = builder.description;
+        this.abbreviation = builder.abbreviation;
         this.name = builder.name;
         this.flag = builder.flag;
     }
@@ -33,13 +33,13 @@ public class Party {
         return name;
     }
 
-    public String getDescription() {
-        return description;
+    public String getAbbreviation() {
+        return abbreviation;
     }
     public static class Builder{
         private String id;
         private String name;
-        private String description;
+        private String abbreviation;
         private byte[] flag;
 
 
@@ -51,7 +51,7 @@ public class Party {
             return this;
         }
         public Builder buildDescription(String description){
-            this.description = description;
+            this.abbreviation = description;
             return this;
         }
         public Builder buildFlag(byte[] flag){

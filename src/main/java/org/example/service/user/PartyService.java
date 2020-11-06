@@ -38,6 +38,23 @@ public class PartyService implements Iservice<Party,String> {
         Optional<Party>partyOptional = partyRepo.findById(id);
         return partyOptional.orElse(null);
     }
+    public Party readWithAbv(String abv){
+        for(Party party: readAll()){
+            if(party.getAbbreviation()!=null){
+                if(party.getAbbreviation().equals(abv)){
+                    return party;
+                }
+            }
+        }
+        return null;
+    }
+    public Boolean deleteWithAbv(String abv){
+        Party party = readWithAbv(abv);
+        if(party!=null){
+           return delete(party.getId());
+        }
+        return null;
+    }
 
     @Override
     public Boolean delete(String id) {

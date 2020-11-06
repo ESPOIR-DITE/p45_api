@@ -2,6 +2,7 @@ package org.example.service.vote;
 
 import org.example.domain.vote.Vote;
 import org.example.domain.vote.Voter;
+import org.example.factory.vote.VoterFactory;
 import org.example.repository.vote.VoteRepository;
 import org.example.repository.vote.VoterRepository;
 import org.example.service.Iservice;
@@ -49,6 +50,14 @@ public class VoterService implements Iservice<Voter,String> {
         return false;
     }
 
+    public Boolean asVoted(String voterId){
+        Voter voter = read(voterId);
+        if (voter != null) {
+            update(VoterFactory.getVoterHasVoted(voter));
+            return true;
+        }
+        return false;
+    }
     @Override
     public List<Voter> readAll() {
         return voterRepository.findAll();

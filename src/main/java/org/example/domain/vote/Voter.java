@@ -12,6 +12,7 @@ public class Voter {
     private String phoneNumber;
     //private byte[] fingerPrint;
     private byte[] image;
+    private boolean canVote;
 
     private Voter() {
     }
@@ -23,6 +24,11 @@ public class Voter {
         this.phoneNumber = builder.phoneNumber;
         this.surname = builder.surname;
         this.image = builder.image;
+        this.canVote = builder.canVote;
+    }
+
+    public boolean isCanVote() {
+        return canVote;
     }
 
     public byte[] getImage() {
@@ -54,6 +60,8 @@ public class Voter {
         private String surname;
         private String phoneNumber;
         private byte[] image;
+        private Boolean canVote;
+
 
     //private byte[] fingerPrint;
 
@@ -62,6 +70,10 @@ public class Voter {
         }
         public Builder buildName(String name){
             this.name = name;
+            return this;
+        }
+        public Builder buildCanVote(Boolean canVote){
+            this.canVote = canVote;
             return this;
         }
         public Builder buildImage(byte[] image){

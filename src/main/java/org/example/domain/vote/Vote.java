@@ -10,6 +10,7 @@ public class Vote {
     private String candidateId;
     private String date;
     private String locationId;
+    private String voterId;
 
     private Vote() {
     }
@@ -19,6 +20,11 @@ public class Vote {
         this.date = builder.date;
         this.id = builder.id;
         this.locationId = builder.locationId;
+        this.voterId = builder.voterId;
+    }
+
+    public String getVoterId() {
+        return voterId;
     }
 
     public String getId() {
@@ -41,12 +47,17 @@ public class Vote {
         private String candidateId;
         private String date;
         private String locationId;
+        private String voterId;
 
         public Builder(String id){
             this.id = id;
         }
         public Builder buildCandidateId(String candidateId){
             this.candidateId = candidateId;
+            return this;
+        }
+        public Builder buildVoterId(String voterId){
+            this.voterId = voterId;
             return this;
         }
         public Builder Date(String date){

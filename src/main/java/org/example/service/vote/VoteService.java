@@ -1,12 +1,16 @@
 package org.example.service.vote;
 
+import org.example.domain.user.Party;
 import org.example.domain.vote.Vote;
+import org.example.domain.vote.VoteResult;
 import org.example.repository.vote.VoteRepository;
 import org.example.repository.vote.VoterRepository;
 import org.example.service.Iservice;
+import org.example.service.user.PartyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,6 +18,9 @@ import java.util.Optional;
 public class VoteService implements Iservice<Vote,String> {
     @Autowired
     private VoteRepository voterRepository;
+    @Autowired
+    private PartyService partyService;
+
     private static VoteService voteService;
 
     public static VoteService getVoteService() {
@@ -55,5 +62,14 @@ public class VoteService implements Iservice<Vote,String> {
     }
     public Long count(){
         return voterRepository.count();
+    }
+
+    public List<VoteResult> voteResult(){
+        List<VoteResult> results = new ArrayList<>();
+        for(Party party: partyService.readAll()){
+            voterRepository.countByCandidateId(party.getId());
+            results.add(new VoteResult(party.getName(),voterRepository.countByCandidateId(party.getId())));
+        }
+        return results;
     }
 }

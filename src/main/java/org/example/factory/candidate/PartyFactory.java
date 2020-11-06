@@ -11,4 +11,11 @@ public class PartyFactory {
                 .buildName(name)
                 .build();
     }
+    public static Party getPartyUpdate(String id,String name,String description,byte[] flag){
+        return new Party.Builder(id)
+                .buildDescription(description)
+                .buildFlag(flag)
+                .buildName(name)
+                .build();
+    }
 }

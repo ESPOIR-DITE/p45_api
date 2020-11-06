@@ -2,11 +2,9 @@ package org.example.controller.vote;
 
 import org.apache.commons.io.FileUtils;
 import org.example.controller.Icontroller;
-import org.example.domain.vote.VoteHelper;
 import org.example.domain.vote.Voter;
 import org.example.factory.vote.VoterFactory;
 import org.example.service.vote.VoterService;
-import org.example.util.ImageResizer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,16 +29,13 @@ public class VoterController implements Icontroller<Voter,String> {
     private VoterService voterService;
 
     @Override
-    public Voter create(Voter voter){
-        return null;
-    }
     @PostMapping("create")
-    public Voter create(@RequestBody VoteHelper voter) throws IOException {
-        System.out.println("File Received: "+voter.getImage());
-        pictureWriter(voter.getImage());
-        ImageResizer.getResizedImage();
-        byte[] resised = convertToBytes();
-        Voter voter1 = VoterFactory.getVoter(voter.getName(),voter.getSurname(),voter.getPhoneNumber()/**,voter.getFingerPrint()**/,encodeIntoByteArray(resised));
+    public Voter create(@RequestBody Voter voter) throws IOException {
+//        System.out.println("File Received: "+voter.getImage());
+//        pictureWriter(voter.getImage());
+//        ImageResizer.getResizedImage();
+//        byte[] resised = convertToBytes();
+        Voter voter1 = VoterFactory.getVoter(voter.getId(),voter.getName(),voter.getSurname(),voter.getPhoneNumber()/**,voter.getFingerPrint()**/,encodeIntoByteArray(voter.getImage()),voter.isCanVote());
         return voterService.create(voter1);
     }
 
